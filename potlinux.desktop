@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=PotLinux
+Comment=PotPlayer-style media player
+Exec=PYBIN POTLINUX_PY %F
+Icon=multimedia-video-player
+Terminal=false
+Categories=AudioVideo;Player;Video;Audio;
+MimeType=video/mp4;video/x-matroska;video/webm;video/x-msvideo;video/quicktime;audio/mpeg;audio/flac;audio/ogg;audio/x-wav;audio/mp4;
