@@ -1,0 +1,111 @@
+# TEST BUILD of every platform:   GitHub > Actions > "build" > Run workflow     (also runs on pull requests)
+# RELEASE: push a tag such as v0.4.0 -> same builds, then the files are attached to a GitHub release.
+# Written without running it on GitHub: expect to fix small things (runner images, versions) on the first run.
+name: build
+on:
+  push: { tags: ["v*"] }
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: sudo apt-get update && sudo apt-get install -y libmpv1 xvfb ffmpeg libegl1 libxcb-cursor0 libxkbcommon-x11-0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0 libxcb-image0 libxcb-render-util0
+      - run: pip install . pytest
+      - run: pytest tests/test_config.py tests/test_windows_registry.py -q
+      - name: GUI smoke test (software GL)
+        run: |
+          ffmpeg -loglevel error -f lavfi -i testsrc=duration=6:size=640x360:rate=25 -f lavfi -i sine=duration=6 -shortest -pix_fmt yuv420p /tmp/t.mp4
+          LIKE_POTPLAYER_NO_PROMPT=1 QT_QPA_PLATFORM=xcb LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a python tests/smoke_gui.py /tmp/t.mp4 | tee smoke.txt
+          ! grep -q FAIL smoke.txt
+
+  linux:
+    needs: test
+    runs-on: ubuntu-22.04            # oldest glibc we support; build-linux-container.sh does the same on your own machine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: sudo apt-get update && sudo apt-get install -y libmpv1 xvfb ffmpeg libegl1 libxcb-cursor0 libxkbcommon-x11-0 libxcb-icccm4 libxcb-keysyms1 libxcb-shape0 libxcb-image0 libxcb-render-util0 desktop-file-utils
+      - run: ./build-linux.sh
+      - name: Install each package and double-click a file (virtual display)
+        run: |
+          for m in appimage tarball deb; do xvfb-run -a tests/test_doubleclick.sh $m; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: |
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.tar.gz
+
+  windows:
+    needs: test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Tools (Inno Setup, WiX)
+        shell: pwsh
+        run: |
+          choco install innosetup -y --no-progress
+          dotnet tool install --global wix
+      - name: Build portable zip + setup.exe + msi
+        shell: pwsh
+        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }       # avoids the GitHub API rate limit when fetching libmpv
+        run: .\build-windows.ps1 -Msi
+      - name: Test installer and MSI (silent install, registry, start-up, uninstall)
+        shell: pwsh
+        run: .\tests\test-installer.ps1 -Msi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: |
+            dist/*-setup.exe
+            dist/*.msi
+            dist/*.zip
+
+  nixos:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - run: ./build-nixos.sh
+      - run: nix --extra-experimental-features "nix-command flakes" flake check "path:$PWD"
+
+  macos:
+    needs: test
+    strategy:
+      matrix:
+        os: [macos-14, macos-13]       # arm64, x86_64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - env:
+          SIGN_ID: ${{ secrets.MACOS_SIGN_ID }}
+          NOTARY_PROFILE: ${{ secrets.MACOS_NOTARY_PROFILE }}
+        run: packaging/macos/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-${{ matrix.os }}
+          path: dist/*.dmg
+
+  publish:
+    needs: [linux, windows, nixos, macos]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: artifacts, merge-multiple: true }
+      - run: cd artifacts && sha256sum * > SHA256SUMS
+      - uses: softprops/action-gh-release@v2
+        with: { files: "artifacts/*" }

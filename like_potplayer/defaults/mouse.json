@@ -1,0 +1,27 @@
+{
+ "schema": 1,
+ "bindings": [
+  {
+   "gesture": "click",
+   "action": "toggle_pause"
+  },
+  {
+   "gesture": "double",
+   "action": "toggle_fullscreen"
+  },
+  {
+   "gesture": "wheel_up",
+   "action": "volume",
+   "args": [
+    5
+   ]
+  },
+  {
+   "gesture": "wheel_down",
+   "action": "volume",
+   "args": [
+    -5
+   ]
+  }
+ ]
+}

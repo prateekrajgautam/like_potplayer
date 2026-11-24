@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=like_potplayer
+GenericName=Media Player
+Comment=PotPlayer-style media player
+Exec=like_potplayer %F
+Icon=like_potplayer
+Terminal=false
+Categories=AudioVideo;Player;Video;Audio;
+MimeType=video/mp4;video/x-matroska;video/webm;video/x-msvideo;video/quicktime;video/x-m4v;video/mp2t;video/mpeg;video/x-ms-wmv;video/x-flv;audio/mpeg;audio/flac;audio/ogg;audio/x-wav;audio/mp4;audio/aac;audio/x-ms-wma;
+StartupWMClass=like_potplayer

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "like_potplayer"
+version = "0.4.0"
+description = "A PotPlayer-style media player for Linux, Windows and macOS (PySide6 + libmpv)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["PySide6-Essentials>=6.5", "python-mpv>=1.0"]
+
+[project.scripts]
+like_potplayer = "like_potplayer.cli:main"
+
+[tool.setuptools]
+packages = ["like_potplayer"]
+
+[tool.setuptools.package-data]
+like_potplayer = ["defaults/*.json", "assets/*"]

@@ -1,0 +1,12 @@
+{
+ "schema": 1,
+ "app_id": "like_potplayer",
+ "app_name": "like_potplayer",
+ "window_title_format": "{title} - {app_name}",
+ "default_skin": "BlackBoxVFD_PreMod3_AdvCtrl",
+ "icons": {
+  "app": "../assets/icon.svg",
+  "mime": "../assets/icon.svg",
+  "ui": {}
+ }
+}

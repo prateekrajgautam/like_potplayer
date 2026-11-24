@@ -1,1 +1,8 @@
-__pycache__
+__pycache__/
+*.egg-info/
+build/
+dist/
+.venv/
+assets/build/
+# third-party skin artwork belongs to its authors: keep it out of public repos / releases
+skins/*.dsf

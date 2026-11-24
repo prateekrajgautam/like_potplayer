@@ -1,0 +1,514 @@
+{
+ "schema": 1,
+ "bindings": [
+  {
+   "action": "about",
+   "keys": [
+    "F1"
+   ]
+  },
+  {
+   "action": "open_folder",
+   "keys": [
+    "F2"
+   ]
+  },
+  {
+   "action": "open_files",
+   "keys": [
+    "F3",
+    "Ctrl+O"
+   ]
+  },
+  {
+   "action": "close_file",
+   "keys": [
+    "F4"
+   ]
+  },
+  {
+   "action": "preferences",
+   "keys": [
+    "F5"
+   ]
+  },
+  {
+   "action": "toggle_playlist",
+   "keys": [
+    "F6"
+   ]
+  },
+  {
+   "action": "toggle_eq",
+   "keys": [
+    "F7"
+   ]
+  },
+  {
+   "action": "toggle_pause",
+   "keys": [
+    "Space"
+   ]
+  },
+  {
+   "action": "toggle_fullscreen",
+   "keys": [
+    "Return",
+    "Enter"
+   ]
+  },
+  {
+   "action": "leave_fullscreen",
+   "keys": [
+    "Esc"
+   ]
+  },
+  {
+   "action": "seek",
+   "args": [
+    -5
+   ],
+   "keys": [
+    "Left"
+   ]
+  },
+  {
+   "action": "seek",
+   "args": [
+    5
+   ],
+   "keys": [
+    "Right"
+   ]
+  },
+  {
+   "action": "seek",
+   "args": [
+    -30
+   ],
+   "keys": [
+    "Ctrl+Left"
+   ]
+  },
+  {
+   "action": "seek",
+   "args": [
+    30
+   ],
+   "keys": [
+    "Ctrl+Right"
+   ]
+  },
+  {
+   "action": "volume",
+   "args": [
+    5
+   ],
+   "keys": [
+    "Up"
+   ]
+  },
+  {
+   "action": "volume",
+   "args": [
+    -5
+   ],
+   "keys": [
+    "Down"
+   ]
+  },
+  {
+   "action": "toggle_mute",
+   "keys": [
+    "M"
+   ]
+  },
+  {
+   "action": "prev",
+   "keys": [
+    "PgUp"
+   ]
+  },
+  {
+   "action": "next",
+   "keys": [
+    "PgDown"
+   ]
+  },
+  {
+   "action": "seek_start",
+   "keys": [
+    "Backspace"
+   ]
+  },
+  {
+   "action": "goto",
+   "keys": [
+    "G"
+   ]
+  },
+  {
+   "action": "speed",
+   "args": [
+    0.1
+   ],
+   "keys": [
+    "C"
+   ]
+  },
+  {
+   "action": "speed",
+   "args": [
+    -0.1
+   ],
+   "keys": [
+    "X"
+   ]
+  },
+  {
+   "action": "speed_reset",
+   "keys": [
+    "Q",
+    "Z"
+   ]
+  },
+  {
+   "action": "frame_forward",
+   "keys": [
+    "F"
+   ]
+  },
+  {
+   "action": "frame_back",
+   "keys": [
+    "D"
+   ]
+  },
+  {
+   "action": "sub_menu",
+   "keys": [
+    "L"
+   ]
+  },
+  {
+   "action": "sub_sync",
+   "args": [
+    -0.5
+   ],
+   "keys": [
+    "<",
+    "Shift+,"
+   ]
+  },
+  {
+   "action": "sub_sync",
+   "args": [
+    0.5
+   ],
+   "keys": [
+    ">",
+    "Shift+."
+   ]
+  },
+  {
+   "action": "sub_sync",
+   "args": [
+    0
+   ],
+   "keys": [
+    "/"
+   ]
+  },
+  {
+   "action": "audio_menu",
+   "keys": [
+    "A"
+   ]
+  },
+  {
+   "action": "audio_sync",
+   "args": [
+    -0.05
+   ],
+   "keys": [
+    "Ctrl+,"
+   ]
+  },
+  {
+   "action": "audio_sync",
+   "args": [
+    0.05
+   ],
+   "keys": [
+    "Ctrl+."
+   ]
+  },
+  {
+   "action": "audio_sync",
+   "args": [
+    0
+   ],
+   "keys": [
+    "Ctrl+/"
+   ]
+  },
+  {
+   "action": "toggle_normalize",
+   "keys": [
+    "Shift+N"
+   ]
+  },
+  {
+   "action": "screenshot",
+   "keys": [
+    "Ctrl+E"
+   ]
+  },
+  {
+   "action": "screenshot_clipboard",
+   "keys": [
+    "Ctrl+C"
+   ]
+  },
+  {
+   "action": "mirror",
+   "keys": [
+    "Ctrl+Z"
+   ]
+  },
+  {
+   "action": "flip_vertical",
+   "keys": [
+    "Ctrl+V"
+   ]
+  },
+  {
+   "action": "aspect_cycle",
+   "keys": [
+    "J"
+   ]
+  },
+  {
+   "action": "brightness",
+   "args": [
+    -1
+   ],
+   "keys": [
+    "W"
+   ]
+  },
+  {
+   "action": "brightness",
+   "args": [
+    1
+   ],
+   "keys": [
+    "E"
+   ]
+  },
+  {
+   "action": "contrast",
+   "args": [
+    -1
+   ],
+   "keys": [
+    "R"
+   ]
+  },
+  {
+   "action": "contrast",
+   "args": [
+    1
+   ],
+   "keys": [
+    "T"
+   ]
+  },
+  {
+   "action": "saturation",
+   "args": [
+    -1
+   ],
+   "keys": [
+    "Y"
+   ]
+  },
+  {
+   "action": "saturation",
+   "args": [
+    1
+   ],
+   "keys": [
+    "U"
+   ]
+  },
+  {
+   "action": "colour",
+   "args": [
+    -1
+   ],
+   "keys": [
+    "I"
+   ]
+  },
+  {
+   "action": "colour",
+   "args": [
+    1
+   ],
+   "keys": [
+    "O"
+   ]
+  },
+  {
+   "action": "filter",
+   "args": [
+    "B"
+   ],
+   "keys": [
+    "Ctrl+B"
+   ]
+  },
+  {
+   "action": "filter",
+   "args": [
+    "D"
+   ],
+   "keys": [
+    "Ctrl+N"
+   ]
+  },
+  {
+   "action": "filter",
+   "args": [
+    "T"
+   ],
+   "keys": [
+    "Ctrl+M"
+   ]
+  },
+  {
+   "action": "filter",
+   "args": [
+    "S"
+   ],
+   "keys": [
+    "Ctrl+Shift+F"
+   ]
+  },
+  {
+   "action": "bookmark_add",
+   "keys": [
+    "P"
+   ]
+  },
+  {
+   "action": "bookmark_list",
+   "keys": [
+    "H"
+   ]
+  },
+  {
+   "action": "bookmark_next",
+   "keys": [
+    "Ctrl+PgDown"
+   ]
+  },
+  {
+   "action": "bookmark_prev",
+   "keys": [
+    "Ctrl+PgUp"
+   ]
+  },
+  {
+   "action": "bookmark_clear",
+   "keys": [
+    "Ctrl+Shift+B"
+   ]
+  },
+  {
+   "action": "ab_start",
+   "keys": [
+    "["
+   ]
+  },
+  {
+   "action": "ab_end",
+   "keys": [
+    "]"
+   ]
+  },
+  {
+   "action": "ab_toggle",
+   "keys": [
+    "\\"
+   ]
+  },
+  {
+   "action": "toggle_slim",
+   "keys": [
+    "Ctrl+Alt+M"
+   ]
+  },
+  {
+   "action": "toggle_on_top",
+   "keys": [
+    "Ctrl+T"
+   ]
+  },
+  {
+   "action": "quit",
+   "keys": [
+    "Ctrl+Q"
+   ]
+  },
+  {
+   "action": "open_url",
+   "keys": [
+    "Ctrl+U"
+   ]
+  },
+  {
+   "action": "cycle_repeat",
+   "keys": [
+    "Ctrl+R"
+   ]
+  },
+  {
+   "action": "toggle_subs",
+   "keys": [
+    "Alt+H"
+   ]
+  },
+  {
+   "action": "cycle_page",
+   "keys": [
+    "Ctrl+Tab"
+   ]
+  },
+  {
+   "action": "toggle_chrome",
+   "keys": [
+    "Ctrl+Shift+S"
+   ]
+  },
+  {
+   "action": "control_box",
+   "keys": [
+    "Ctrl+K"
+   ]
+  },
+  {
+   "action": "skin_next",
+   "keys": [
+    "Ctrl+Alt+S"
+   ]
+  },
+  {
+   "action": "reload_config",
+   "keys": [
+    "Ctrl+Alt+R"
+   ]
+  }
+ ]
+}
