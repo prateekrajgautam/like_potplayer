@@ -12,4 +12,9 @@ pkgs.mkShell {
   LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
     pkgs.mpv-unwrapped pkgs.libGL pkgs.libxkbcommon pkgs.wayland pkgs.fontconfig pkgs.freetype pkgs.dbus pkgs.xorg.libX11 pkgs.xorg.libxcb
   ];
+
+shellHook = ''
+python3 potlinux.py
+
+'';
 }
